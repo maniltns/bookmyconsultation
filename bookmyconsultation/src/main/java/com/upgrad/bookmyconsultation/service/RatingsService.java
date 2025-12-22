@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -25,15 +26,13 @@ public class RatingsService {
 	private DoctorRepository doctorRepository;
 
 	
-	//create a method name submitRatings with void return type and parameter of type Rating
-		//set a UUID for the rating
-		//save the rating to the database
-		//get the doctor id from the rating object
-		//find that specific doctor with the using doctor id
-		//modify the average rating for that specific doctor by including the new rating
-		//save the doctor object to the database
-	
-	
-
+	public void submitRatings(Rating rating) {
+		rating.setId(UUID.randomUUID().toString());
+		ratingsRepository.save(rating);
+		Doctor doctor = doctorRepository.findById(rating.getDoctorId()).get();
+		List<Rating> ratings = ratingsRepository.findByDoctorId(doctor.getId());
+		double averageRating = ratings.stream().mapToInt(Rating::getRating).average().orElse(0.0);
+		doctor.setRating(averageRating);
+		doctorRepository.save(doctor);
 	}
 }

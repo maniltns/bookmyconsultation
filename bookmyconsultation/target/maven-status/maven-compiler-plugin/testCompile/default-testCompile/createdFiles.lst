@@ -1,0 +1,5 @@
+com\upgrad\bookmyconsultation\controller\AppointmentControllerTest.class
+com\upgrad\bookmyconsultation\BookmyconsultationApplicationTests.class
+com\upgrad\bookmyconsultation\controller\UserAdminControllerTest.class
+com\upgrad\bookmyconsultation\controller\RatingsControllerTest.class
+com\upgrad\bookmyconsultation\controller\DoctorControllerTest.class

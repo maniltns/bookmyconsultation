@@ -1,8 +1,6 @@
 package com.upgrad.bookmyconsultation.model;
 
 import com.upgrad.bookmyconsultation.constants.TimeSlotConstants;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.security.InvalidParameterException;
@@ -10,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Data
-@NoArgsConstructor
 public class TimeSlot {
 	private String doctorId;
 	private String availableDate;
@@ -47,4 +43,10 @@ public class TimeSlot {
 	}
 
 
+	public String getDoctorId() { return doctorId; }
+	public void setDoctorId(String doctorId) { this.doctorId = doctorId; }
+	public String getAvailableDate() { return availableDate; }
+	public void setAvailableDate(String availableDate) { this.availableDate = availableDate; }
+	public List<String> getTimeSlot() { return timeSlot; }
+	public void setTimeSlot(List<String> timeSlot) { this.timeSlot = timeSlot; }
 }

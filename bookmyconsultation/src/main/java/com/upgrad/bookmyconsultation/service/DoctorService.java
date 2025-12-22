@@ -10,7 +10,7 @@ import com.upgrad.bookmyconsultation.repository.AddressRepository;
 import com.upgrad.bookmyconsultation.repository.AppointmentRepository;
 import com.upgrad.bookmyconsultation.repository.DoctorRepository;
 import com.upgrad.bookmyconsultation.util.ValidationUtils;
-import lombok.extern.log4j.Log4j2;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springfox.documentation.annotations.Cacheable;
@@ -21,9 +21,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Log4j2
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class DoctorService {
+	private static final Logger log = LoggerFactory.getLogger(DoctorService.class);
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 	@Autowired
@@ -32,24 +35,26 @@ public class DoctorService {
 	private AddressRepository addressRepository;
 
 	
-	//create a method register with return type and parameter of typeDoctor
-	//declare InvalidInputException for the method
-		//validate the doctor details
-		//if address is null throw InvalidInputException
-		//set UUID for doctor using UUID.randomUUID.
-		//if speciality is null 
-			//set speciality to Speciality.GENERAL_PHYSICIAN
-		//Create an Address object, initialise it with address details from the doctor object
-		//Save the address object to the database. Store the response.
-		//Set the address in the doctor object with the response
-		//save the doctor object to the database
-		//return the doctor object
-	
-	
-	//create a method name getDoctor that returns object of type Doctor and has a String paramter called id
-		//find the doctor by id
-		//if doctor is found return the doctor
-		//else throw ResourceUnAvailableException
+	public Doctor register(Doctor doctor) throws InvalidInputException {
+		ValidationUtils.validate(doctor);
+		if (doctor.getAddress() == null) {
+			throw new InvalidInputException(Arrays.asList("Address"));
+		}
+		doctor.setId(UUID.randomUUID().toString());
+		if (doctor.getSpeciality() == null) {
+			doctor.setSpeciality(Speciality.GENERAL_PHYSICIAN);
+		}
+		Address address = doctor.getAddress();
+		address.setId(UUID.randomUUID().toString());
+		doctor.setAddress(addressRepository.save(address));
+		return doctorRepository.save(doctor);
+	}
+
+	public Doctor getDoctor(String id) {
+		return Optional.ofNullable(doctorRepository.findById(id))
+				.map(curr -> curr.get())
+				.orElseThrow(ResourceUnAvailableException::new);
+	}
 
 	
 

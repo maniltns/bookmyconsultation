@@ -7,11 +7,6 @@
  */
 package com.upgrad.bookmyconsultation.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +20,7 @@ import java.time.ZonedDateTime;
 /**
  * User Entity JPA mapping class.
  **/
-@Data
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserAuthToken {
 
 	@Id
@@ -47,4 +38,16 @@ public class UserAuthToken {
 	private ZonedDateTime expiresAt;
 
 	private ZonedDateTime logoutAt;
+	public long getId() { return id; }
+	public void setId(long id) { this.id = id; }
+	public User getUser() { return user; }
+	public void setUser(User user) { this.user = user; }
+	public String getAccessToken() { return accessToken; }
+	public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
+	public ZonedDateTime getLoginAt() { return loginAt; }
+	public void setLoginAt(ZonedDateTime loginAt) { this.loginAt = loginAt; }
+	public ZonedDateTime getExpiresAt() { return expiresAt; }
+	public void setExpiresAt(ZonedDateTime expiresAt) { this.expiresAt = expiresAt; }
+	public ZonedDateTime getLogoutAt() { return logoutAt; }
+	public void setLogoutAt(ZonedDateTime logoutAt) { this.logoutAt = logoutAt; }
 }
