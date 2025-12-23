@@ -1,0 +1,19 @@
+.header {
+    background-color: purple;
+    height: 70px;
+    padding: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    background-color: #ff7f7f;
+    height: 35px;
+    display: block;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}

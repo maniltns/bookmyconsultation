@@ -1,0 +1,15 @@
+a {
+  text-decoration: none;
+}
+
+.dispNone {
+  display: none;
+}
+
+.dispBlock {
+  display: block;
+}
+
+.red {
+  color: red;
+}
