@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Typography, Button, Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 import Modal from 'react-modal';
 import BookAppointment from './BookAppointment';
 import DoctorDetails from './DoctorDetails';
@@ -98,7 +99,7 @@ const DoctorList = () => {
                 <Paper key={doctor.id} style={{ width: '40%', margin: '15px', padding: '20px', textAlign: 'left', cursor: 'pointer' }} elevation={3}>
                     <Typography variant="h6">Doctor Name: {doctor.firstName} {doctor.lastName}</Typography>
                     <Typography>Speciality: {doctor.speciality}</Typography>
-                    <Typography>Rating: {doctor.rating}</Typography>
+                    <Typography>Rating: <Rating name="read-only" value={doctor.rating} readOnly /></Typography>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                         <Button variant="contained" color="primary" style={{ width: '40%', margin: '10px' }} onClick={() => handleBookAppointment(doctor)}>
                             BOOK APPOINTMENT

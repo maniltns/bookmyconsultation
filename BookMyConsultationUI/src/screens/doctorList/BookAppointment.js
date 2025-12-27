@@ -55,14 +55,9 @@ const BookAppointment = ({ doctorName, doctorId, closeModal }) => {
             if (response.ok) {
                 // Success
                 closeModal();
-                // Ideally show a success message or notification? The requirements don't explicitly say for success, 
-                // but say "When a user tries to book... if already booked... display message".
-                // I'll assume success just closes modal or maybe the parent handles it.
-                // Or I can show a success message here before closing?
-                // I will just close for now.
             } else {
                 // Error - "Either the slot is already booked or not available"
-                setBookingError("Either the slot is already booked or not available");
+                alert("Either the slot is already booked or not available");
             }
         } catch (e) {
             setBookingError("Something went wrong");

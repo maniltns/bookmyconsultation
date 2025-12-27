@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./common/common.css";
 import reportWebVitals from "./reportWebVitals";
 import Controller from "./screens/Controller";
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 
 const DoctorDetails = ({ doctor }) => {
     return (
@@ -7,7 +8,7 @@ const DoctorDetails = ({ doctor }) => {
             <CardHeader title="Doctor Details" style={{ backgroundColor: 'purple', color: 'white', height: '70px', padding: '11px' }} />
             <CardContent>
                 <Typography variant="h6" component="h2" gutterBottom>
-                    {doctor.firstName} {doctor.lastName}
+                    Dr: {doctor.firstName} {doctor.lastName}
                 </Typography>
                 <Typography color="textSecondary" gutterBottom>
                     Total Experience: {doctor.totalYearsOfExp} years
@@ -28,7 +29,7 @@ const DoctorDetails = ({ doctor }) => {
                     Mobile: {doctor.mobile}
                 </Typography>
                 <Typography color="textSecondary" gutterBottom>
-                    Rating: {doctor.rating}
+                    Rating: <Rating name="read-only" value={doctor.rating} readOnly />
                 </Typography>
             </CardContent>
         </Card>

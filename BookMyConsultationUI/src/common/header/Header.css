@@ -13,7 +13,26 @@
     display: block;
 }
 
+.header-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .header-right {
     display: flex;
     align-items: center;
+}
+
+.login-header {
+    background-color: purple;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }

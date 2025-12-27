@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
 import logo from '../../assets/logo.jpeg';
-import { Button, Tab, Tabs, Card, Snackbar } from '@material-ui/core';
+import { Button, Tab, Tabs, Card, Snackbar, Typography } from '@material-ui/core';
 import Modal from 'react-modal';
 import Login from '../../screens/login/Login';
 import Register from '../../screens/register/Register';
@@ -57,7 +57,10 @@ const Header = ({ isLoggedIn, loginHandler, logoutHandler }) => {
 
     return (
         <div className="header">
-            <img src={logo} alt="Logo" className="logo" />
+            <div className="header-logo-container">
+                <img src={logo} alt="Logo" className="logo" />
+                <span className="header-text">Doctor Finder</span>
+            </div>
             <div className="header-right">
                 {!isLoggedIn ? (
                     <Button variant="contained" color="primary" onClick={openModal}>
@@ -76,8 +79,13 @@ const Header = ({ isLoggedIn, loginHandler, logoutHandler }) => {
                 style={customStyles}
                 contentLabel="Login Modal"
             >
-                <Card>
-                    <Tabs value={value} onChange={handleChange}>
+                <Card className="cardStyle">
+                    <header className="login-header">
+                        <Typography variant="h5">
+                            Authentication
+                        </Typography>
+                    </header>
+                    <Tabs className="tabs" value={value} onChange={handleChange}>
                         <Tab label="Login" />
                         <Tab label="Register" />
                     </Tabs>
