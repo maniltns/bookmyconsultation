@@ -70,6 +70,7 @@ const Login = ({ loginHandler }) => {
             } catch (e) {
                 // handle error
                 console.log(e);
+                setLoginError(true);
             }
         }
     }

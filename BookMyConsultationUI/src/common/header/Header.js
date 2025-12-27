@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
 import logo from '../../assets/logo.jpeg';
-import { Button, Tab, Tabs, Card } from '@material-ui/core';
+import { Button, Tab, Tabs, Card, Snackbar } from '@material-ui/core';
 import Modal from 'react-modal';
 import Login from '../../screens/login/Login';
 import Register from '../../screens/register/Register';
@@ -25,6 +25,8 @@ const customStyles = {
 const Header = ({ isLoggedIn, loginHandler, logoutHandler }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [value, setValue] = useState(0);
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const [snackBarMessage, setSnackBarMessage] = useState("");
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -37,6 +39,20 @@ const Header = ({ isLoggedIn, loginHandler, logoutHandler }) => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+    };
+
+    const onLoginSuccess = () => {
+        setModalIsOpen(false);
+        setSnackBarMessage("Login Successful");
+        setSnackBarOpen(true);
+        loginHandler();
+    }
+
+    const handleSnackBarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackBarOpen(false);
     };
 
     return (
@@ -65,10 +81,20 @@ const Header = ({ isLoggedIn, loginHandler, logoutHandler }) => {
                         <Tab label="Login" />
                         <Tab label="Register" />
                     </Tabs>
-                    {value === 0 && <Login loginHandler={loginHandler} />}
+                    {value === 0 && <Login loginHandler={onLoginSuccess} />}
                     {value === 1 && <Register />}
                 </Card>
             </Modal>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={snackBarOpen}
+                autoHideDuration={6000}
+                onClose={handleSnackBarClose}
+                message={snackBarMessage}
+            />
         </div>
     );
 };
